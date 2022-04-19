@@ -1,0 +1,39 @@
+---
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# COVID-19's Impact on Adults Mental Health
+
+Francesca Stewart, Alethea Alberto, Asma Mohamed
+
+Biosciences Department, Minnesota State University Moorhead
+
+## Introduction
+
+intro goes here
+
+## Methods
+
+methods
+
+where we are getting the data
+
+we downloaded data from kids count
+
+## Results
+
+RESULTS
+
+## Discussion
+
+discusssion
+
+## Refrences
+
+refrences
+
+## Acknowledgements
