@@ -1,1 +1,41 @@
+---
+output: github_document
+---
 
+```{r setup, include= FALSE}
+knit::knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+# COVID-19 's Impact on Adults Mental Health
+
+### Introduction
+
+With the recent COVID-19 pandemic, a lot of changes have been brought into our lives. Which is why we wanted to evaluate the impacts of COVID-19 on adult's mental health. To address this topic, we used datasets that focus on, SNAP, MDE (major depressive episode), poverty, and reports of symptoms of depressive disorders.  Our results may help us understand the effects of COVID-19 on adults' mental health in the United States.
+
+### Methods
+
+-   We compared the following aspects; finance/income (poverty/food insecurity) US adult's lives before and after the pandemic to understand the impacts the pandemic had on mental health. 
+
+-   All graphs were made in R studio.
+
+-   All data was collected by going to the corresponding website and downloading the to get the SNAP data, we went to the USDA website, searched for SNAP data tables, and downloaded. The poverty data, we went to the US census website, searched for the poverty tab, and downloaded the tables. To get the MDE data, we downloaded the raw data from the SAMHSA website, off of the national survey on mental health. The age MDE data came from KFF.org and this is a website that has data reporting nationwide health issues.
+
+### Results
+
+According to the SNAP (Supplemental Nutrition Assistance Program) data set, poverty levels were on a decrease from 2016 to 2019. Due to the financial uncertainties brought on by the COVID-19 pandemic, there was a spike in cases of poverty, and SNAP users in 2020. There were no cases of COVID-19 in the US until January 2020. The amount of major depressive episodes has been increasing from 2016-2020, but the biggest spike occurred the year the pandemic started. The graph with how ages and MDE's are correlated show that the age group with the most MDE's are 18-29. In fact, 49% of people ages 18-29 said they had an MDE.
+
+### Discussions
+
+From the rise in MDE (major depressive episode); as well as the SNAP users (Supplemental Nutrition Assistance Program) it is clear that there is a correlation here. With the increase in SNAP users and an increase in people in poverty from 2019 to 2020 you can understand why there is an increase in major depressive episodes, especially with adults among the ages of 18-29. This specific group of adults are more vulnerable to because your early teens into your mid to late twenties are a very uncertain time in one's life.
+
+As a group we came to the conclusion that, an increase in poverty levels led to an increase in MDE for the age 18-29. Due to the level of uncertainty that this group faces.
+
+### References
+
+Reference 1: R Core Team (2021). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL
+
+<https://www.R-project.org/.>

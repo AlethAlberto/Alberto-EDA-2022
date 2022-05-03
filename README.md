@@ -20,4 +20,4 @@ Our results may help us understand the effect of COVID-19 on young adult's menta
 
 ### Contents
 
--   [EDA Project Report](EDA Project Reports.Rmd)
+-   [EDA Project Report](EDA%20Project%20Reports.Rmd)
