@@ -75,23 +75,15 @@ ggplot(data = poverty_data,
     subtitle = "US Census Data"
   )
  
-
 ```
 
 Figure 1. The Number of SNAP users from 2016-2021 in the US.
 
-```{r fig.height=3, fig.width=4}
-library(tidyverse)
-library(readxl)
-snap_data <- 
-  read_excel(
-    path = "data/SNAPsummary-3.xlsx",
-    col_names = c("year", "n_users"),
-    col_types = c("numeric","numeric","skip", "skip", "skip", "skip"),
-    skip = 6,
-    n_max = 53
-  ) %>% 
-  print()
+# plots the SNAP data from 2016 to 2020
+snap_data %>% 
+  filter(year) %>% 
+  ggplot(aes(y=year, x=snap))
+
 
 poverty_data <-
   read_excel(
@@ -118,20 +110,19 @@ As a group we came to the conclusion that, an increase in poverty levels led to 
 To conclude, based off the data we collected from the SNAP users and the US Census Poverty levels that increased during 2020, this is a big reason for the increase in Major Depressive Episodes during the COVID-19 Pandemic. We expect to see the numbers or all graphs decrease after the pandemic is declared done.
 
 ```{r}
-
-> poverty_data <- 
+poverty_data <- 
 +   read_excel(
 +     path = "data/tableB-5.xls",
 +     col_names = c("year", "ppl_in_poverty"),
 +     col_types = c("numeric","skip", "skip", "skip", "skip", "skip", "skip", "skip", "numeric","skip","skip","skip","skip"),
 +     skip = 9,
 +     n_max = 6
-+   ) %>% 
++ ) %>% 
 +   filter(year != 2017) %>% 
 +   mutate(year = ifelse(year == 20171, 2017, year)) %>% 
 +   print()
 # A tibble: 5 x 2
-   year ppl_in_poverty
+year ppl_in_poverty
   <dbl>          <dbl>
 1  2020          20640
 2  2019          18660
@@ -150,7 +141,7 @@ In read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet,  :
 +     y = "Number of People",
 +     title = "Change in Poverty",
 +     subtitle = "US Census Data"
-+   )
++)
 > graph <- plot(poverty_data, type = "o", xlab="Year",ylab="Number of People",
 +               main="Number of People in Poverty Overtime")
 > ggplot(data = poverty_data, 
@@ -162,15 +153,15 @@ In read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet,  :
 +     y = "Number of People",
 +     title = "Change in Poverty",
 +     subtitle = "US Census Data"
-+   )
++ )
 > knitr::opts_chunk$set(
 +     echo = FALSE,
 +     message = FALSE,
 +     warning = FALSE
-+ )
++)
 > library(readxl)
-> SNAPsummary_3 <- read_excel("data/SNAPsummary-3.xlsx")
-New names:
+> SNAPsummary_3 <- read_excel("data/SNAPsummary-3.xlsx"),
+New name:
 * `` -> ...2
 * `` -> ...3
 * `` -> ...4
