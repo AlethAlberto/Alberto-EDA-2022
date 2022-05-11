@@ -1,0 +1,182 @@
+---
+output: github_document
+---
+
+```{r setup, include= FALSE}
+knitr::opts_chunk$set(
+    echo = FALSE,
+    message = FALSE,
+    warning = FALSE
+)
+```
+
+# COVID-19 's Impact on Adults Mental Health
+
+### Introduction
+
+With the recent COVID-19 pandemic, a lot of changes have been brought into our lives. Which is why we wanted to evaluate the impacts of COVID-19 on adult's mental health. There are many ways that COVID-19 can impact someone's mental health:
+
+-   financial uncertainty
+
+-   Social distancing/ isolation
+
+-   The after affects if you get COVID-19
+
+Singh, Jaspreet and Singh, Jagandeep, COVID-19 and Its Impact on Society (April 3, 2020). Electronic Research Journal of Social Sciences and Humanities, Vol 2: Issue I, 2020 , Available at SSRN: <https://ssrn.com/abstract=3567837>
+
+To answer this question, we used data sets that focus on, SNAP (Supplemental Nutrition Assistance Program), MDE (major depressive episode), poverty, and reports of symptoms of depressive disorders.  Our results may help us understand the effects of COVID-19 on adults' mental health in the United States.
+
+### Methods
+
+-   We compared the following aspects; finance/income (poverty/food insecurity) US adult's lives before and after the pandemic to understand the impacts the pandemic had on mental health. 
+
+-   The poverty data was collected by looking at the poverty section of the US Census website and downloading the data tables.
+
+-   The SNAP data was collected by looking at the USDA website and downloading the SNAP data tables.
+
+-   The MDE data was collected by looking at the SAMHSA website where the national survey on mental health and downloaded the raw data.
+
+-   How the data was collected before each data source
+
+-   The analysis were done in R (R Core Team, 2021) and RStudio (RStudio Team, 2022). Using the following packages: tidyverse (Wickham,2019),
+
+-   All data was collected by going to the corresponding website and downloading the to get the SNAP data, we went to the USDA website, searched for SNAP data tables, and downloaded. The poverty data, we went to the US census website, searched for the poverty tab, and downloaded the tables. To get the MDE data, we downloaded the raw data from the SAMHSA website, off of the national survey on mental health. The age MDE data came from KFF.org and this is a website that has data reporting nationwide health issues.
+
+### Results
+
+According to the SNAP data set, the national poverty level were on a decrease from 2016 to 2019 (Fig. 1). Due to the financial uncertainties brought on by the COVID-19 pandemic, there was a spike in cases of poverty, and SNAP users in 2020. There were no cases of COVID-19 in the US until January 2020. The amount of major depressive episodes has been increasing from 2016-2020, but the biggest spike occurred the year the pandemic started. The graph with how ages and MDE's are correlated show that the age group with the most MDE's are 18-29. In fact, 49% of people ages 18-29 said they had an MDE.
+
+```{r fig.height=3, fig.width=4}
+
+library(tidyverse)
+library(readxl)
+
+# read the poverty data
+poverty_data <- 
+  read_excel(
+    path = "data/tableB-5.xls",
+    col_names = c("year", "ppl_in_poverty"),
+    col_types = c("numeric","skip", "skip", "skip", "skip", "skip", "skip", "skip", "numeric","skip","skip","skip","skip"),
+    skip = 9,
+    n_max = 6
+  ) %>% 
+  filter(year != 2017) %>% 
+  mutate(year = ifelse(year == 20171, 2017, year))
+
+# plots the poverty data from 2016 to 2020
+ggplot(data = poverty_data, 
+       mapping = aes(x = year, y = ppl_in_poverty)) +
+  geom_line() + 
+  geom_point() +
+  labs(
+    x = "Year",
+    y = "Number of People",
+    title = "Change in Poverty",
+    subtitle = "US Census Data"
+  )
+ 
+```
+
+Figure 1. The Number of SNAP users from 2016-2021 in the US.
+
+# plots the SNAP data from 2016 to 2020
+snap_data %>% 
+  filter(year) %>% 
+  ggplot(aes(y=year, x=snap))
+
+
+poverty_data <-
+  read_excel(
+    path = "data/tableB-5.xls",
+    col_names = c("year", "n_users"),
+    col_types = c("numeric","skip", "skip", "skip", "skip", "skip", "skip", "skip", "numeric","skip","skip","skip","skip"),
+skip = 9,
+n_max = 399,
+filter("year" != 2017) %>% 
+  mutate(year = ifelse(year == 20171, 2017, year)) %>% 
+  print()
+)
+```
+
+
+### Discussion
+
+From the rise in MDE; as well as the SNAP users it is clear that there is a correlation here. With the increase in SNAP users and an increase in people in poverty from 2019 to 2020 you can understand why there is an increase in major depressive episodes, especially with adults among the ages of 18-29. This specific group of adults are more vulnerable to because your early teens into your mid to late twenties are a very uncertain time in one's life.
+
+As a group we came to the conclusion that, an increase in poverty levels led to an increase in MDE for the age 18-29. Due to the level of uncertainty that this group faces.
+
+### Conclusion
+
+To conclude, based off the data we collected from the SNAP users and the US Census Poverty levels that increased during 2020, this is a big reason for the increase in Major Depressive Episodes during the COVID-19 Pandemic. We expect to see the numbers or all graphs decrease after the pandemic is declared done.
+
+```{r}
+poverty_data <- 
++   read_excel(
++     path = "data/tableB-5.xls",
++     col_names = c("year", "ppl_in_poverty"),
++     col_types = c("numeric","skip", "skip", "skip", "skip", "skip", "skip", "skip", "numeric","skip","skip","skip","skip"),
++     skip = 9,
++     n_max = 6
++ ) %>% 
++   filter(year != 2017) %>% 
++   mutate(year = ifelse(year == 20171, 2017, year)) %>% 
++   print()
+# A tibble: 5 x 2
+year ppl_in_poverty
+  <dbl>          <dbl>
+1  2020          20640
+2  2019          18660
+3  2018          21130
+4  2017          21913
+5  2016          22795
+Warning message:
+In read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet,  :
+  Coercing text to numeric in A13 / R13C1: '20171'
+> ggplot(data = poverty_data, 
++        mapping = aes(x = year, y = ppl_in_poverty)) +
++   geom_line() + 
++   geom_point() +
++   labs(
++     x = "Year",
++     y = "Number of People",
++     title = "Change in Poverty",
++     subtitle = "US Census Data"
++)
+> graph <- plot(poverty_data, type = "o", xlab="Year",ylab="Number of People",
++               main="Number of People in Poverty Overtime")
+> ggplot(data = poverty_data, 
++        mapping = aes(x = year, y = ppl_in_poverty)) +
++   geom_line() + 
++   geom_point() +
++   labs(
++     x = "Year",
++     y = "Number of People",
++     title = "Change in Poverty",
++     subtitle = "US Census Data"
++ )
+> knitr::opts_chunk$set(
++     echo = FALSE,
++     message = FALSE,
++     warning = FALSE
++)
+> library(readxl)
+> SNAPsummary_3 <- read_excel("data/SNAPsummary-3.xlsx"),
+New name:
+* `` -> ...2
+* `` -> ...3
+* `` -> ...4
+* `` -> ...5
+* `` -> ...6
+> View(SNAPsummary_3)
+> 
+```
+
+Figure 3. The percent of people who said "yes" or "no" to having a MDE over 2016-2020 in the US.
+
+### References
+
+R Core Team (2021). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL: <https://www.R-project.org/>.
+
+Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, <https://doi.org/10.21105/joss.01686>.
+
+RStudio Team (2022). RStudio: Integrated Development Environment for R. RStudio, PBC, Boston, MA URL <http://www.rstudio.com/.>
