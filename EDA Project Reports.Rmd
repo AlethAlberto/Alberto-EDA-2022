@@ -81,7 +81,6 @@ ggplot(data = poverty_data,
 Figure 1. The Number of SNAP users from 2016-2021 in the US.
 
 ```{r fig.height=3, fig.width=4}
-
 library(tidyverse)
 library(readxl)
 snap_data <- 
@@ -107,7 +106,6 @@ filter("year" != 2017) %>%
 )
 ```
 
-Figure 2. The Number of people in poverty from 2016-2020 in the US.
 
 ### Discussion
 
