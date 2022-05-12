@@ -96,7 +96,7 @@ filter("year" != 2017) %>%
   mutate(year = ifelse(year == 20171, 2017, year)) %>% 
   print()
 )
-```
+
 
 
 ### Discussion
@@ -110,48 +110,25 @@ As a group we came to the conclusion that, an increase in poverty levels led to 
 To conclude, based off the data we collected from the SNAP users and the US Census Poverty levels that increased during 2020, this is a big reason for the increase in Major Depressive Episodes during the COVID-19 Pandemic. We expect to see the numbers or all graphs decrease after the pandemic is declared done.
 
 ```{r}
-poverty_data <- 
-+   read_excel(
-+     path = "data/tableB-5.xls",
-+     col_names = c("year", "ppl_in_poverty"),
-+     col_types = c("numeric","skip", "skip", "skip", "skip", "skip", "skip", "skip", "numeric","skip","skip","skip","skip"),
-+     skip = 9,
-+     n_max = 6
-+ ) %>% 
-+   filter(year != 2017) %>% 
-+   mutate(year = ifelse(year == 20171, 2017, year)) %>% 
-+   print()
-# A tibble: 5 x 2
-year ppl_in_poverty
-  <dbl>          <dbl>
-1  2020          20640
-2  2019          18660
-3  2018          21130
-4  2017          21913
-5  2016          22795
-Warning message:
-In read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet,  :
-  Coercing text to numeric in A13 / R13C1: '20171'
-> ggplot(data = poverty_data, 
-+        mapping = aes(x = year, y = ppl_in_poverty)) +
-+   geom_line() + 
-+   geom_point() +
-+   labs(
-+     x = "Year",
-+     y = "Number of People",
-+     title = "Change in Poverty",
-+     subtitle = "US Census Data"
-+)
-> graph <- plot(poverty_data, type = "o", xlab="Year",ylab="Number of People",
-+               main="Number of People in Poverty Overtime")
-> ggplot(data = poverty_data, 
-+        mapping = aes(x = year, y = ppl_in_poverty)) +
-+   geom_line() + 
-+   geom_point() +
-+   labs(
-+     x = "Year",
-+     y = "Number of People",
-+     title = "Change in Poverty",
+library(tidyverse)
+library(readxl)
+
+# read snap data
+snap_data <- 
+  read_excel(
+    path = "data/SNAPsummary-3.xlsx",
+    col_names = c("year", "n_users"),
+    col_types = c("numeric","numeric","skip", "skip", "skip", "skip"),
+    skip = 6,
+    n_max = 53
+  ) %>% 
+  print()
+
+# plots the SNAP data from 2016 to 2020
+snap_data %>% 
+  filter(year) %>% 
+  ggplot(aes(y=year, x=snap))
+
 +     subtitle = "US Census Data"
 + )
 > knitr::opts_chunk$set(
